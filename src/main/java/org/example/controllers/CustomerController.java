@@ -22,13 +22,13 @@ public class CustomerController {
         return customerService.addCustomer(customer);
     }
 
-    @GetMapping("/getCustomerById")
-    public Customer getCustomerById(@RequestParam String customerName) {
+    @GetMapping("/getCustomerByName")
+    public Customer getCustomerByName(@RequestParam String customerName) {
         return customerService.getCustomerByName(customerName);
     }
 
-    @DeleteMapping("/deleteCustomerById")
-    public String deleteCustomerById(@RequestParam String customerName) {
+    @DeleteMapping("/deleteCustomerByName")
+    public String deleteCustomerByName(@RequestParam String customerName) {
         return customerService.deleteCustomerByName(customerName);
     }
 

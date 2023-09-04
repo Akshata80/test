@@ -1,7 +1,6 @@
 package org.example.services;
 
 import org.example.model.Customer;
-import org.example.model.User;
 import org.example.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

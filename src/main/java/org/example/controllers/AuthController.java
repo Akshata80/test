@@ -1,7 +1,6 @@
 package org.example.controllers;
 
 import org.example.model.AuthRequest;
-
 import org.example.model.User;
 import org.example.services.AuthService;
 import org.example.util.JwtUtil;
@@ -12,7 +11,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
 
 @RestController
 public class AuthController {
@@ -25,7 +23,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    User user = new User();
+     User user = new User();
 
     @GetMapping("/getAllUsers")
     @Cacheable(cacheNames = "dataCache")
@@ -39,15 +37,15 @@ public class AuthController {
         return authService.addUser(user);
     }
 
-    @GetMapping("/getUserById")
+    @GetMapping("/getUserByName")
     @CacheEvict
-    public User getUserById(@RequestParam String userName) {
+    public User getUserByName(@RequestParam String userName) {
         return authService.getUserByName(userName);
     }
 
-    @DeleteMapping("/deleteUserById")
+    @DeleteMapping("/deleteUserByName")
     @CacheEvict
-    public String deleteCustomerById(@RequestParam String userName) {
+    public String deleteUserByName(@RequestParam String userName) {
         return authService.deleteUserByName(userName);
     }
 

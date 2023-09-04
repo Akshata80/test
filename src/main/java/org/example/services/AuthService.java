@@ -3,7 +3,6 @@ package org.example.services;
 import org.example.model.User;
 import org.example.repository.AuthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -49,7 +48,7 @@ public class AuthService implements UserDetailsService {
         try {
             authrepository.deleteByUserName(userName);
             return ("User Deleted Successfully");
-        } catch(Error error) {
+        } catch (Error error) {
             return ("Failed to delete the Users" + error);
         }
     }
@@ -58,7 +57,7 @@ public class AuthService implements UserDetailsService {
         try {
             authrepository.deleteAll();
             return ("all Users Deleted Successfully");
-        } catch(Error error) {
+        } catch (Error error) {
             return ("Failed to delete all Users" + error);
         }
     }
@@ -66,22 +65,13 @@ public class AuthService implements UserDetailsService {
 
     @Cacheable(cacheNames = "dataCache")
     public List<User> getAllData() {
-        // Simulate some time-consuming data retrieval
         simulateDataFetchingDelay();
-
         return dataStore;
     }
 
-    @CacheEvict(cacheNames = "dataCache", allEntries = true)
-    public void clearDataCache() {
-        // This method is used to clear the cache when data is updated
-        // You should call this method whenever data is modified
-    }
-
-    // Simulate a delay in data fetching (for demonstration purposes)
     private void simulateDataFetchingDelay() {
         try {
-            Thread.sleep(2000); // Sleep for 2 seconds
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
